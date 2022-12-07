@@ -1,18 +1,47 @@
-function createDivArray(){
-    let div = new Array(16);
-    let arrayDiv = document.createElement("div");
-    arrayDiv.className = "container";
-    let body = document.querySelector('body');
-    for(i=0; i<16; i++){
-        div[i] = new Array(16);
-        for(n = 0; n < 16; n++)
-        {
-            div[i][n] = document.createElement("div");
-            div[i][n].className = "child";
-            arrayDiv.appendChild(div[i][n]);
-        }
+
+//Functions
+
+function createDivArray(n){
+    let div = new Array(n);
+    for(i=0; i<n; i++){
+        div[i] = document.createElement("div");
+        div[i].className = "child";
+        div[i].style.backgroundColor = defaultColor;
+        arrayDiv.appendChild(div[i]);
     }
-    body.appendChild(arrayDiv);
 }
 
-createDivArray();
+
+
+//Variable
+
+let defaultColor = "aquamarine";
+const body = document.querySelector('body')
+const arrayDiv = document.createElement("div");
+const reset = document.querySelector("#reset");
+const input = document.getElementById("pixel");
+
+
+
+
+
+arrayDiv.id = "container";
+body.appendChild(arrayDiv);
+createDivArray(36);
+let children = arrayDiv.childNodes;
+
+
+
+//EventListener
+
+children.forEach(child => {
+    child.addEventListener("mousemove", () => {
+        child.style["background-color"] = "black";
+        
+})});
+
+reset.addEventListener("click", () => {
+    children.forEach(child => {
+        child.style.backgroundColor = defaultColor;
+    })
+});
